@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 3005;
+const port = process.env.PORT || 3005;
 
 app.use(express.static('stuff'));
 app.get('/colou?r', (req, res) => {
@@ -15,11 +15,17 @@ app.get(/.*apple$/, (req, res) => {
     res.get('\napple\n')
 })
 
-app.route('/banana/', (req, res) => {
-    get.get((req, res) => {
-        ('get request\n')
+app.route('/banana/')
+    .get((req, res) => {
+       console.log('get');
     })
-})
+    .put((req, res) => {
+       console.log('put');
+    })
+    .delete((req, res) => {
+        console.log('deleted');
+    })
+
 app.listen(port, () => {
     console.log(`on port: ${port}`);
 })
